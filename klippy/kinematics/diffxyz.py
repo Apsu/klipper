@@ -63,11 +63,11 @@ class DiffXYZKinematics:
         return [ (pos[0] + pos[1]) - (pos[2] + pos[3]),
                  (pos[0] + pos[1]) + (pos[2] + pos[3]),
                  (pos[0] - pos[1]) + (pos[2] - pos[3]) ]
-        def set_position(self, newpos, homing_axes):
-            for i, rail in enumerate(self.rails):
-                rail.set_position(newpos)
-                if i in homing_axes:
-                    self.limits[i] = rail.get_range()
+    def set_position(self, newpos, homing_axes):
+        for i, rail in enumerate(self.rails):
+            rail.set_position(newpos)
+            if i in homing_axes:
+                self.limits[i] = rail.get_range()
     def note_z_not_homed(self):
         # Helper for Safe Z Home
         self.limits[2] = (1.0, -1.0)
