@@ -15,28 +15,28 @@ diffxyz_stepper_a_calc_position(struct stepper_kinematics *sk, struct move *m, d
 {
     struct coord c = move_get_coord(m, move_time);
     // return c.x + c.y;
-    return (c.x + c.y) / 2.0 + c.z;
+    return 0.5 * (c.x + c.y + c.z);
 }
 
 static double
 diffxyz_stepper_b_calc_position(struct stepper_kinematics *sk, struct move *m, double move_time)
 {
     struct coord c = move_get_coord(m, move_time);
-    return (c.x + c.y) / 2.0 - c.z;
+    return 0.5 * (c.x + c.y - c.z);
 }
 
 static double
 diffxyz_stepper_c_calc_position(struct stepper_kinematics *sk, struct move *m, double move_time)
 {
     struct coord c = move_get_coord(m, move_time);
-    return (-c.x + c.y) / 2.0 + c.z;
+    return 0.5 * (-c.x + c.y + c.z);
 }
 
 static double
 diffxyz_stepper_d_calc_position(struct stepper_kinematics *sk, struct move *m, double move_time)
 {
     struct coord c = move_get_coord(m, move_time);
-    return (-c.x + c.y) / 2.0 - c.z;
+    return 0.5 * (-c.x + c.y - c.z);
 }
 
 struct stepper_kinematics *__visible
