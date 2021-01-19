@@ -12,7 +12,7 @@ class DiffXYZKinematics:
         self.rails = [ stepper.PrinterRail(config.getsection('stepper_a')),
                        stepper.PrinterRail(config.getsection('stepper_b')),
                        stepper.PrinterRail(config.getsection('stepper_c')),
-                       stepper.PrinterRail(config.getsection('stepper_c'))) ]
+                       stepper.PrinterRail(config.getsection('stepper_d')) ]
         # Add endstops for every rail to every other rail
         for rail in self.rails:
             for other in self.rails:
