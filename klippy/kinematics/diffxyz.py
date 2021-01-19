@@ -13,19 +13,23 @@ class DiffXYZKinematics:
                        stepper.PrinterRail(config.getsection('stepper_b')),
                        stepper.PrinterRail(config.getsection('stepper_c')),
                        stepper.PrinterRail(config.getsection('stepper_d')) ]
+
         # Add endstops for every rail to every other rail
         #for rail in self.rails:
         #    for other in self.rails:
         #        if other != rail:
         #            rail.get_endstops()[0][0].add_stepper(other.get_steppers()[0])
+
         # 4 motor inputs
         self.rails[0].setup_itersolve('diffxyz_stepper_alloc', 'a')
         self.rails[1].setup_itersolve('diffxyz_stepper_alloc', 'b')
         self.rails[2].setup_itersolve('diffxyz_stepper_alloc', 'c')
         self.rails[3].setup_itersolve('diffxyz_stepper_alloc', 'd')
+
         for s in self.get_steppers():
             s.set_trapq(toolhead.get_trapq())
             toolhead.register_step_generator(s.generate_steps)
+
         config.get_printer().register_event_handler("stepper_enable:motor_off",
                                                     self._motor_off)
         # Setup boundary checks
@@ -54,6 +58,7 @@ class DiffXYZKinematics:
         #self.rails[3].set_max_jerk(max_xy_halt_velocity, max_xy_accel)
         # self.rails[2].set_max_jerk(
         #     min(max_halt_velocity, self.max_z_velocity), self.max_z_accel)
+
     def get_steppers(self):
         return [s for rail in self.rails for s in rail.get_steppers()]
 
@@ -81,6 +86,7 @@ class DiffXYZKinematics:
 
     def _motor_off(self, print_time):
         self.limits = [(1.0, -1.0)] * 3
+
 #    def _check_endstops(self, move):
 #        end_pos = move.end_pos
 #        for i in (0, 1, 2):
@@ -90,6 +96,7 @@ class DiffXYZKinematics:
 #                if self.limits[i][0] > self.limits[i][1]:
 #                    raise move.move_error("Must home axis first")
 #                raise move.move_error()
+
     def check_move(self, move):
         pass
     def get_status(self, eventtime):
