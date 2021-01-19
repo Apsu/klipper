@@ -60,8 +60,8 @@ class DiffXYZKinematics:
         # x = (a + b) - (c + d)
         # y = (a + b) + (c + d)
         # z = (a - b) + (c - d)
-        return [ (pos[0] + pos[1]) - (pos[2] + pos[3]),
-                 (pos[0] + pos[1]) + (pos[2] + pos[3]),
+        return [ 0.5*(pos[0] + pos[1]) - 0.5*(pos[2] + pos[3]),
+                 0.5*(pos[0] + pos[1]) + 0.5*(pos[2] + pos[3]),
                  (pos[0] - pos[1]) + (pos[2] - pos[3]) ]
     def set_position(self, newpos, homing_axes):
         for i, rail in enumerate(self.rails):
