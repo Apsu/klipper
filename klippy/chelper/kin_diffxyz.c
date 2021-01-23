@@ -1,4 +1,4 @@
-// CoreXY kinematics stepper pulse time generation
+// DiffXYZ kinematics stepper pulse time generation
 //
 // Copyright (C) 2021 Evan Callicoat <apsu@propter.net>
 //
